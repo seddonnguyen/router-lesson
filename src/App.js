@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+
 import Home from './components/Home'
 import About from './components/About'
 import List from './components/List'
@@ -16,10 +17,15 @@ class App extends Component {
   }
 
   render() {
+
     return (
-      <div>
-        hello
+
+      <div className="nav">
+        <Link className="link" to="/">Home</Link>
+        <Link className="link" to="/about/">About</Link>
+        <Link className="link" to="/list/">List</Link>
       </div>
+
     );
   }
 }
