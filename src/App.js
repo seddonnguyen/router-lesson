@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import Home from './components/Home'
 import About from './components/About'
@@ -16,16 +17,29 @@ class App extends Component {
     }
   }
 
+  listComponent = () => <List animals={this.state.list} />;
+
   render() {
-
     return (
-
-      <div className="nav">
-        <Link className="link" to="/">Home</Link>
-        <Link className="link" to="/about/">About</Link>
-        <Link className="link" to="/list/">List</Link>
-      </div>
-
+      <Router>
+        <div className="nav">
+          <Link className="link" to="/">Home</Link>
+          <Link className="link" to="/about/">About</Link>
+          <Link className="link" to="/list/">List</Link>
+        </div>
+        <Switch>
+          <Route
+            path="/about/"
+            render={(props) => <About {...props} /> }
+          />
+          <Route 
+            path="/list/"
+            render={ this.listComponent }
+          />
+          <Route exact path="/" component={ Home } />
+          <Route component={ AppNotFound } />
+        </Switch>
+      </Router>
     );
   }
 }
